@@ -1,18 +1,21 @@
-package week1;
+// package ICP_2026.week_1;
+
+// import java.util.*;
 
 public class Problem1 {
-    int minPrice=Integer.MAX_VALUE; // yaha pe hum sabse kam price track kar rahe hai (best din buy)
-int maxProfit=0; // yaha max profit store karenge
-
-for(int price:prices){ // saare prices ek ek krke dekh lenge
-    if(price<minPrice){
-        minPrice=price; // agar koi aur sasta mila to buy ka din update
-    }else{
-        // agar sasta mil chuka aur ab price bada mila to profit calculate
-        maxProfit=Math.max(maxProfit,price-minPrice);
+    public static void main(String[] args) {
+        int[] prices = {7, 1, 5, 3, 6, 4};
+        System.out.println(maxProfit(prices));
     }
-}
 
-return maxProfit; // final mai best profit return
-}
+    // buy and sell stock to maximize profit
+     public static int maxProfit(int[] prices) {
+        int min=Integer.MAX_VALUE;
+        int max=0;
+        for(int i:prices){
+            min=Math.min(min,i);
+            max=Math.max(max,i-min);
+        }
+        return max;
+    }
 }

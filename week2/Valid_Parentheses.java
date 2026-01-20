@@ -1,38 +1,61 @@
+// package week2;
+
 import java.util.Stack;
 
-class Solution {
-    public boolean isValid(String s) {
-        // Create a stack to keep track of opening brackets
-        Stack<Character> st=new Stack<>();
+public class Valid_Parentheses {
 
-        // Loop through each character in the string
-        for (int i=0; i<s.length(); i++) {
-            char ch=s.charAt(i);
+    // This method checks whether the parentheses string is valid
+    public static boolean isValid(String s) {
 
-            // If it's an opening bracket, push it onto the stack
-            if (ch=='(' || ch=='{' || ch=='[') {
+        Stack<Character> st = new Stack<>();
+
+        // If only one character, it can't be valid
+        if (s.length() == 1) return false;
+
+        // Traverse the string
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+
+            // If opening bracket, push to stack
+            if (ch == '(' || ch == '{' || ch == '[') {
                 st.push(ch);
-            } else {
-                // If it's a closing bracket but stack is empty → invalid
-                if (st.isEmpty()) {
-                    return false;
-                }
-                // Peek at the top element of the stack
-                char top=st.peek();
+            } 
+            else {
 
-                // Check if the current closing bracket matches the top opening bracket
-                if ((ch==')' && top=='(') ||
-                    (ch=='}' && top=='{') ||
-                    (ch ==']' && top== '[')) {
-                    // If it matches, pop the opening bracket
+                // If stack is empty, no matching opening
+                if (st.isEmpty()) return false;
+
+                // Check matching pair
+                if (ch == ')' && st.peek() == '(') {
                     st.pop();
-                } else {
-                    // If it doesn't match → invalid
+                } 
+                else if (ch == '}' && st.peek() == '{') {
+                    st.pop();
+                } 
+                else if (ch == ']' && st.peek() == '[') {
+                    st.pop();
+                } 
+                // Mismatch case
+                else {
                     return false;
                 }
             }
         }
-        // At the end, the stack should be empty if all brackets matched
+
+        // If stack empty → valid parentheses
         return st.isEmpty();
+    }
+
+    // Main function
+    public static void main(String[] args) {
+
+        // Example input
+        String s = "{[()]}";
+
+        // Call method directly
+        boolean result = isValid(s);
+
+        // Print result
+        System.out.println("Is valid parentheses? " + result);
     }
 }
