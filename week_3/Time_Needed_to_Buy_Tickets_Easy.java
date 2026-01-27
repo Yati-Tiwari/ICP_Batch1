@@ -2,7 +2,7 @@ package week_3;
 
 import java.util.Scanner;
 
-public class Time_Needed_to_Buy_Tickets_Solved_Easy {
+public class Time_Needed_to_Buy_Tickets_Easy {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
